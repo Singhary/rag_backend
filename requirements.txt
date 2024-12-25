@@ -4,9 +4,10 @@ langchain-core
 langchain_community
 docx2txt
 pypdf
-langchain_chroma
+langchain-chroma>=0.1.2
 python-multipart
 fastapi
 uvicorn
 langchain-google-genai
 prisma
+pinecone-client
