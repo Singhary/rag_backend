@@ -4,7 +4,7 @@ langchain-core
 langchain_community
 docx2txt
 pypdf
-langchain-chroma>=0.1.2
+langchain-chroma
 python-multipart
 fastapi
 uvicorn
