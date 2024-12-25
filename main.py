@@ -14,6 +14,10 @@ logging.basicConfig(filename='app.log', level=logging.INFO)
 # Initialize FastAPI app
 app = FastAPI()
 
+@app.get("/")
+def main():
+    return {"message": "Welcome to the AI Chatbot API!"}
+
 @app.post("/chat", response_model=QueryResponse)
 def chat(query_input: QueryInput):
     session_id = query_input.session_id or str(uuid.uuid4())
