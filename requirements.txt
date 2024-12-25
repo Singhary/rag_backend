@@ -11,4 +11,3 @@ uvicorn
 langchain-google-genai
 prisma
 pysqlite-binary
-pysqlite3-wheels
