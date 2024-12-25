@@ -10,4 +10,4 @@ fastapi
 uvicorn
 langchain-google-genai
 prisma
-chromadb==0.3.29
+pysqlite-binary
