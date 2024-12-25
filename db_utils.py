@@ -1,90 +1,76 @@
-from prisma import Prisma
-from prisma.models import Application_logs
+import sqlite3
+from datetime import datetime
 
-db = Prisma()
+DB_NAME = "rag_app.db"
 
+def get_db_connection():
+    conn = sqlite3.connect(DB_NAME)
+    conn.row_factory = sqlite3.Row
+    return conn
 
-async def insert_application_logs(session_id, user_query, gpt_response, model):
-    await db.connect()
-    await db.application_logs.create(
-        {
-            "session_id": session_id,
-            "user_query": user_query,
-            "gpt_response": gpt_response,
-            "model": model,
-        }
-    )
-    await db.disconnect()
+def create_application_logs():
+    conn = get_db_connection()
+    conn.execute('''CREATE TABLE IF NOT EXISTS application_logs
+                    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     session_id TEXT,
+                     user_query TEXT,
+                     gpt_response TEXT,
+                     model TEXT,
+                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)''')
+    conn.close()
 
+def create_document_store():
+    conn = get_db_connection()
+    conn.execute('''CREATE TABLE IF NOT EXISTS document_store
+                    (id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     filename TEXT,
+                     upload_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)''')
+    conn.close()
 
-async def get_chat_history(session_id):
-    await db.connect()
+def insert_application_logs(session_id, user_query, gpt_response, model):
+    conn = get_db_connection()
+    conn.execute('INSERT INTO application_logs (session_id, user_query, gpt_response, model) VALUES (?, ?, ?, ?)',
+                 (session_id, user_query, gpt_response, model))
+    conn.commit()
+    conn.close()
 
-    messages_data = await db.application_logs.find_many(
-        where={"session_id": session_id},
-        order={"created_at": "asc"},
-    )
-
+def get_chat_history(session_id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT user_query, gpt_response FROM application_logs WHERE session_id = ? ORDER BY created_at', (session_id,))
     messages = []
-    for message in messages_data:
-        messages.extend(
-            [
-                {"role": "human", "content": message.user_query},
-                {"role": "ai", "content": message.gpt_response},
-            ]
-        )
-    print(messages)
-    await db.disconnect()
+    for row in cursor.fetchall():
+        messages.extend([
+            {"role": "human", "content": row['user_query']},
+            {"role": "ai", "content": row['gpt_response']}
+        ])
+    conn.close()
     return messages
 
-
-async def insert_document_record(filename):
-    await db.connect()
-
-    file = await db.document_store.create(
-        {
-            "filename": filename,
-        }
-    )
-
-    file_id = file.id
-
-    await db.disconnect()
-
+def insert_document_record(filename):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO document_store (filename) VALUES (?)', (filename,))
+    file_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
     return file_id
 
-async def delete_document_record(file_id: int):
-    await db.connect()
-    try:
-        # Check if the record exists
-        record = await db.document_store.find_first(where={"id": file_id})
-        if not record:
-            print(f"No record found with id {file_id}")
-            return False
+def delete_document_record(file_id):
+    conn = get_db_connection()
+    conn.execute('DELETE FROM document_store WHERE id = ?', (file_id,))
+    conn.commit()
+    conn.close()
+    return True
 
-        # Delete the record
-        result = await db.document_store.delete(where={"id": file_id})
-        if result:
-            print(f"Record with id {file_id} deleted successfully.")
-        else:
-            print(f"Failed to delete record with id {file_id}")
-            return False
+def get_all_documents():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('SELECT id, filename, upload_timestamp FROM document_store ORDER BY upload_timestamp DESC')
+    documents = cursor.fetchall()
+    conn.close()
+    return [dict(doc) for doc in documents]
 
-        return True
-    except Exception as e:
-        print(f"Error while deleting record: {e}")
-        return False
-    finally:
-        await db.disconnect()
-
-
-async def get_all_documents():
-    await db.connect()
-    print("Connected to database")
-    allFiles = await db.document_store.find_many()
-    print(allFiles)
-    await db.disconnect()
-    
-    return [dict(file) for file in allFiles]
-
-
+# Initialize the database tables
+create_application_logs()
+create_document_store()

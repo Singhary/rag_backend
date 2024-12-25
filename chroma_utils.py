@@ -27,7 +27,7 @@ def load_and_split_document(file_path:str)->List[Document]:
     document = loader.load()
     return text_splitter.split_documents(document)
     
-def index_document_to_chroma(file_path:str , file_id:int):
+def index_document_to_chroma(file_path:str , file_id:int)->bool:
     try:
         splits = load_and_split_document(file_path)
         
