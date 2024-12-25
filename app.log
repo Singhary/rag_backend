@@ -1,0 +1,84 @@
+INFO:httpx:HTTP Request: GET http://localhost:31510/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:31510/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:31523/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:31523/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:31532/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:31532/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:31656/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:31656/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:31719/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:31719/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:31728/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:31728/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:31734/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:31734/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:31790/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:31790/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:32080/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:32080/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:32463/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:32463/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:32463/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:32624/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:32624/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:32633/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:32633/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:32691/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:32691/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:32698/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:32698/ "HTTP/1.1 200 OK"
+INFO:root:Session ID: fc95b612-184a-4863-b926-a283771fc7fa, User Query: what are limitation of yolo, Model: gemini-1.5-flash
+INFO:root:Session ID: ghfhfhf, User Query: what are limitation of yolo, Model: gemini-1.5-flash
+INFO:root:Session ID: ghfhfhf, User Query: what are limitation of yolo, Model: gemini-1.5-flash
+INFO:root:Session ID: 577af029-e68e-438e-a8cd-695270a78823, User Query: what are limitation of yolo, Model: gemini-1.5-flash
+INFO:httpx:HTTP Request: GET http://localhost:8165/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:8165/ "HTTP/1.1 200 OK"
+INFO:root:Session ID: 192d163d-1722-4882-92d9-6339cf42f82e, User Query: what are limitation of yolo
+
+, Model: gemini-1.5-flash
+INFO:httpx:HTTP Request: GET http://localhost:8187/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:8187/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:8193/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:8193/ "HTTP/1.1 200 OK"
+INFO:root:Session ID: 192d163d-1722-4882-92d9-6339cf42f82e, AI Response: Based on the provided text, YOLO's limitations include:
+
+* **Spatial constraints:** Each grid cell predicts only two boxes and one class, limiting the number of nearby objects it can detect.  This is especially problematic for small objects appearing in groups.
+
+* **Generalization difficulties:**  Because it learns from data, YOLO struggles to generalize to objects with new or unusual aspect ratios or configurations.
+
+* **Coarse features:** The use of multiple downsampling layers results in relatively coarse features for bounding box prediction.
+
+* **Loss function limitations:** The loss function treats errors equally in small and large bounding boxes, which may not be optimal.
+
+* **Non-maximal suppression:** While not a critical limitation, the need for non-maximal suppression to address multiple detections slightly reduces performance (2-3% decrease in mAP).
+
+INFO:httpx:HTTP Request: GET http://localhost:49764/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49764/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:49772/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49772/ "HTTP/1.1 200 OK"
+INFO:root:Session ID: 849b36db-4248-4d74-9d64-e6c957468de7, User Query: what is yolo?, Model: gemini-1.5-flash
+INFO:httpx:HTTP Request: GET http://localhost:49781/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49781/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:49787/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49787/ "HTTP/1.1 200 OK"
+INFO:root:Session ID: 849b36db-4248-4d74-9d64-e6c957468de7, AI Response: Based on the provided text, YOLO is a system for object detection.  It's extremely fast at test time because it only requires a single network evaluation, unlike classifier-based methods.  It predicts bounding boxes and class probabilities for each box.  The grid design helps ensure spatial diversity in predictions, though non-maximal suppression can further improve accuracy by handling multiple detections of the same object.
+
+INFO:root:Session ID: 849b36db-4248-4d74-9d64-e6c957468de7, User Query: what are its limitation?, Model: gemini-1.5-flash
+INFO:httpx:HTTP Request: GET http://localhost:49796/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49796/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:49801/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49801/ "HTTP/1.1 200 OK"
+INFO:root:Session ID: 849b36db-4248-4d74-9d64-e6c957468de7, AI Response: The provided text mentions that YOLO has limitations, but it doesn't specify what those limitations are.  More information is needed to answer your question fully.
+
+INFO:root:Session ID: 849b36db-4248-4d74-9d64-e6c957468de7, User Query: what are limitation of yolo?, Model: gemini-1.5-flash
+INFO:httpx:HTTP Request: GET http://localhost:49813/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49813/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:49818/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49818/ "HTTP/1.1 200 OK"
+INFO:root:Session ID: 849b36db-4248-4d74-9d64-e6c957468de7, AI Response: The provided text does not list any specific limitations of YOLO.  To find out the limitations of YOLO, you will need to consult other sources.
+
+INFO:httpx:HTTP Request: GET http://localhost:49837/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49837/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49837/ "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: GET http://localhost:49845/status "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:49845/ "HTTP/1.1 200 OK"
