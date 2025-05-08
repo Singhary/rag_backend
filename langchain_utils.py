@@ -32,7 +32,7 @@ qa_prompt = ChatPromptTemplate.from_messages([
     ("human", "{input}")
 ])
 
-def get_rag_chain(model="gemini-1.5-flash"):
+def get_rag_chain(model="gemini-2.0-flash"):
     llm = ChatGoogleGenerativeAI(model=model)
     history_aware_retriever = create_history_aware_retriever(llm , retriever , contextualize_q_prompt)
     question_answering_chain = create_stuff_documents_chain(llm,qa_prompt)
